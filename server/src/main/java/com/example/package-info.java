@@ -1,4 +1,4 @@
 /**
- Test class
+ *@class
 **/
 package com.example;
