@@ -1,3 +1,3 @@
 Hello, World Chandra!
-
-<%= "Hai from JSP" %>
+<br>
+<%= "<h1 style='color:red'>Hai from JSP</h1>" %>
