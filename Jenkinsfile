@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                maven(maven : 'localMaven'){
+                maven(name : 'localMaven'){
                         bat 'mvn clean package'
                  
             }
