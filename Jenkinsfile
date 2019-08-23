@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                maven(name : 'localMaven'){
+               
                         bat 'mvn clean package'
                  
             }
@@ -18,5 +18,4 @@ pipeline {
         }
 
         }
-}
 }
