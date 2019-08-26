@@ -30,13 +30,13 @@ pipeline {
                 stage('Deployment to Staging')
                 {
                     steps {
-                        bat "scp **/target/*.war C:\\Users\\91956\\Downloads"
+                        bat "pscp **/target/*.war C:\\Users\\91956\\Downloads"
                     }
                 }
                  stage('Deployment to Production')
                 {
                     steps {
-                        bat "scp -i C:\\Users\\91956\\Downloads\\tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
+                        bat "pscp -i C:\\Users\\91956\\Downloads\\tomcat-demo.pem **/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
                     }
                 }
 
