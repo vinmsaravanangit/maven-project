@@ -30,7 +30,7 @@ pipeline {
                 stage('Deployment to Staging')
                 {
                     steps {
-                        bat "pscp **/target/*.war C:\\Users\\91956\\Downloads"
+                        bat "echo y | pscp -i C:\\Users\\91956\\Desktop\\tomcat-demo.ppk webapp/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
                     }
                 }
                  stage('Deployment to Production')
