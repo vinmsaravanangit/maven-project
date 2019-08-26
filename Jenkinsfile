@@ -38,6 +38,14 @@ pipeline {
                     steps {
                         bat "echo y | pscp -i C:\\Users\\91956\\Desktop\\tomcat-demo.ppk webapp/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
                     }
+                    post{
+                        success{
+                            echo 'DEPLOYMENT SUCCESSFUL'
+                        }
+                        failure{
+                            echo "Error in Deployment"
+                        }
+                    }
                 }
 
             }
