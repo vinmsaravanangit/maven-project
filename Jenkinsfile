@@ -36,7 +36,7 @@ pipeline {
                  stage('Deployment to Production')
                 {
                     steps {
-                        bat "pscp -i C:\\Users\\91956\\Downloads\\tomcat-demo.pem webapp/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
+                        bat "pscp -i C:\\Users\\91956\\Desktop\\tomcat-demo.ppk webapp/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
                     }
                 }
 
