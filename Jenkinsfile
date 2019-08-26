@@ -30,7 +30,7 @@ pipeline {
                 stage('Deployment to Staging')
                 {
                     steps {
-                        sh "scp -i C:\\Users\\91956\\Downloads\\tomcat-demo.pem **/target/*.war ec2-user@18.232.106.248:/var/lib/tomcat/webapps"
+                        scp -i C:\\Users\\91956\\Downloads\\tomcat-demo.pem **/target/*.war ec2-user@18.232.106.248:/var/lib/tomcat/webapps
                     }
                 }
                  stage('Deployment to Production')
