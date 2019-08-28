@@ -1,56 +1,11 @@
-pipeline {
+pipeline{
     agent any
-    parameters{
-        string(name:'tomcat_dev', defaultValue:'18.232.106.248', description:'Staging Server')
-        string(name:'tomcat_prod', defaultValue:'34.207.187.230', description:'Prodcution Server')
+    stages{
+        stage{
+            step('Build')
+            {
+                bat 'mvn clean package'
+            }
+        }
     }
-
-    triggers{
-
-        pollSCM('* * * * *')
-    }
-    stages {
-        stage('Build') {
-            steps {
-               
-                        bat 'mvn clean package'
-                 
-            }
-            post{
-                success{
-                    echo 'Now archiving...'
-                   
-                    archiveArtifacts '**/target/*.war'
-                }
-            }
-
-        }
-        stage('Deployments') {
-            parallel{
-                stage('Deployment to Staging')
-                {
-                    steps {
-                        bat "echo y | pscp -i C:\\Users\\91956\\Desktop\\tomcat-demo.ppk webapp/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
-                    }
-                }
-                 stage('Deployment to Production')
-                {
-                    steps {
-                        bat "echo y | pscp -i C:\\Users\\91956\\Desktop\\tomcat-demo.ppk webapp/target/*.war ec2-user@${params.tomcat_prod}:/var/lib/tomcat/webapps"
-                    }
-                    post{
-                        success{
-                            echo 'DEPLOYMENT SUCCESSFUL'
-                        }
-                        failure{
-                            echo "Error in Deployment"
-                        }
-                    }
-                }
-
-            }
-        }
-
-        
-        }
 }
